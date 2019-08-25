@@ -1,0 +1,1 @@
+{{ Form::submit('Almacenar', ['class' => 'btn btn-outline-warning' ]) }}

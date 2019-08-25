@@ -1,0 +1,1 @@
+{{ Form::submit('Guardar', ['class' => 'btn btn-outline-success' ]) }}
