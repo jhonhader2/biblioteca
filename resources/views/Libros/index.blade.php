@@ -10,6 +10,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Autor</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                         <td>{{ $libro->name  }}</td>
                         <td>{{ $libro->autor->name }}</td>
                         <td>{{ $libro->categoria->name }}</td>
+                        <td>{{ $libro->estado->name }}</td>
                         <td>
                             <a class="btn btn-outline-warning btn-sm" href="libros.edit">Editar</a>
                             <a class="btn btn-outline-danger btn-sm" href="libros.destroy">Eliminar</a>

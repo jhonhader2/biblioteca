@@ -19,9 +19,11 @@ class CreateLibrosTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('autor_id');
             $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('estado_id');
 
             $table->foreign('autor_id')->references('id')->on('autors')->onDelete('cascade');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('estado_id')->references('id')->on('estados')->onDelete('cascade');
 
             $table->timestamps();
         });

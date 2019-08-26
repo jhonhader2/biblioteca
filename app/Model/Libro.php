@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Libro extends Model
 {
-    protected $fillable = ['nombre'];
+    protected $fillable = [];
 
-    public function categoria()
-    {
-        return $this->belongsTo('App\Model\Categoria');
+    public function autor(){
+        return $this->belongsTo(Autor::class);
+    }
+    
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
     }
 
-    public function autor()
-    {
-        return $this->belongsTo('App\Model\Autor');
+    public function estado(){
+        return $this->belongsTo(Estado::class);
     }
 }

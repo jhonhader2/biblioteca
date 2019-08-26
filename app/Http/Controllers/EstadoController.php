@@ -42,7 +42,7 @@ class EstadoController extends Controller
         $estado->name = $request->input('name');
         $estado->save();
 
-        return redirect()->route('estados.index');
+        return redirect()->route('estados.index')->with('success', 'El estado ha sido creado con éxito');;
     }
 
     /**

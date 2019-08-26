@@ -8,26 +8,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Biblioteca</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{{ route('libros.index') }}">Libros</a>
-                <a class="nav-item nav-link" href="{{ route('autores.index') }}">Autores</a>
-                <a class="nav-item nav-link" href="{{ route('categorias.index') }}">Categorias</a>
-                <a class="nav-item nav-link" href="{{ route('estados.index') }}">Estados</a>
-                <a class="nav-item nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
-                </div>
+    <div id="app">
+        @include('layouts.nav-bar')
+        <div class="container">
+            <div class="row">
+                @include('layouts.commons.alerts.messages')
+                @yield('content')
             </div>
-            </nav>
-    <div class="container">
-        <div class="row">
-            @yield('content')
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

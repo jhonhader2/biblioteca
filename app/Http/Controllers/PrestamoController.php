@@ -7,7 +7,7 @@ use App\Model\Libro;
 use App\Model\Prestamo;
 use App\Model\User;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\PrestamoRequest;
 class PrestamoController extends Controller
 {
     private function libros(){
@@ -56,7 +56,7 @@ class PrestamoController extends Controller
         $libros     = $this->libros();
         $usuarios   = $this->usuarios();
         $estados    = $this->estados();
-        
+
         return view('prestamos.create', compact('libros', 'usuarios', 'estados'));
     }
 
@@ -66,20 +66,18 @@ class PrestamoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(PrestamoRequest $request){
         $prestamo = new Prestamo();
-
+        
         $prestamo->libro_id         = $request->input('libro_id');
         $prestamo->user_id          = $request->input('user_id');
         $prestamo->fecha_prestamo   = $request->input('fecha_prestamo');
         $prestamo->fecha_entrega    = $request->input('fecha_entrega');
-        $prestamo->estado_id        = $request->input('estado_id');
-
-        //dd($request);
-    
         $prestamo->save();
-
+        
+        $libroUpdate = Libro::findOrFail($request->input('libro_id'));
+        $libroUpdate->estado_id     = $request->input('estado_id');
+        $libroUpdate->save();
 
         return redirect()->route('prestamos.index');
     }
@@ -123,15 +121,15 @@ class PrestamoController extends Controller
 
         $prestamo->libro_id         = $request->input('libro_id');
         $prestamo->user_id          = $request->input('user_id');
-        $prestamo->estado_id        = $request->input('estado_id');
         $prestamo->fecha_prestamo   = $request->input('fecha_prestamo');
         $prestamo->fecha_entrega    = $request->input('fecha_entrega');
-
-        //dd($prestamo);
-
         $prestamo->save();
         
-        return redirect()->route('prestamos.index');
+        $libroUpdate = Libro::findOrFail($request->input('libro_id'));
+        $libroUpdate->estado_id     = $request->input('estado_id');
+        $libroUpdate->save();
+        
+        return redirect()->route('prestamos.index')->with('info', 'Se ha actualizado el préstamo correctamente');;
     }
 
     /**
@@ -143,11 +141,13 @@ class PrestamoController extends Controller
     public function destroy($id)
     {
         $prestamo = Prestamo::findOrFail($id);
+        
+        $libroUpdate = Libro::findOrFail($prestamo->libro_id);
+        $libroUpdate->estado_id = 1;
 
-        //dd($id);
-
+        $libroUpdate->save();
         $prestamo->delete();
 
-        return redirect()->route('prestamos.index');
+        return redirect()->route('prestamos.index')->with('error', 'El préstamo se ha eliminado con éxito');;
     }
 }

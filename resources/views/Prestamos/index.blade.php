@@ -24,7 +24,7 @@
                         <td>{{ $prestamo->user->name }}</td>
                         <td>{{ $prestamo->fecha_prestamo  }}</td>
                         <td>{{ $prestamo->fecha_entrega  }}</td>
-                        <td>{{ $prestamo->estado->name }}</td>
+                        <td>{{ $prestamo->libro->estado->name }}</td>
                         <td class="row justify-content-between">
                             <a class="btn btn-outline-warning btn-sm" href="{{ route('prestamos.edit', $prestamo->id) }} ">Editar</a>
                             {{-- <a class="btn btn-outline-danger btn-sm" href="{{ route('prestamos.destroy', $prestamo->id) }}">Eliminar</a> --}}

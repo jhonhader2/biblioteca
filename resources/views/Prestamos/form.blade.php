@@ -1,10 +1,10 @@
 <div class="form-group">
     <label for="libro_id">Nombre del Libro</label>
-    {{ Form::select('libro_id', $libros, null, ['class' => 'form-control']) }}
+    {{ Form::select('libro_id', $libros, null, ['class' => 'form-control', 'required' => 'required']) }}
 </div>
 <div class="form-group">
     <label for="user_id">Usuario</label>
-    {{ Form::select('user_id', $usuarios, null, ['class' => 'form-control']) }}
+    {{ Form::select('user_id', $usuarios, null, ['class' => 'form-control', 'required' => 'required' ]) }}
 </div>
 <div class="form-group">
     <label for="fecha_prestamo">Fecha del Préstamo</label>
@@ -16,5 +16,5 @@
 </div>
 <div class="form-group">
     <label for="estado_id">Estado</label>
-    {{ Form::select('estado_id', $estados, null, ['class' => 'form-control']) }}
+    {{ Form::select('estado_id', $estados, null, ['class' => 'form-control', 'required' => 'required' ]) }}
 </div>

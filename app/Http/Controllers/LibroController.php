@@ -5,11 +5,37 @@ namespace App\Http\Controllers;
 use App\Model\Autor;
 use App\Model\Libro;
 use App\Model\Categoria;
-
+use App\Model\Estado;
 use Illuminate\Http\Request;
 
 class LibroController extends Controller
 {
+    private function autores(){
+        $autorxxx = ['' => 'Seleccione'];
+        foreach (Autor::get() as $autorx) {
+            $autorxxx[$autorx->id] = $autorx->name;
+        }
+
+        return $autorxxx;
+    }
+
+    private function categorias(){
+        $categoriaxxx = ['' => 'Seleccione'];
+        foreach (Categoria::get() as $categoriax) {
+            $categoriaxxx[$categoriax->id] = $categoriax->name;
+        }
+
+        return $categoriaxxx;
+    }
+    
+    private function estados(){
+        $estados = ['' => 'Seleccione'];
+        foreach(Estado::get() as $estadoxx){
+            $estados[$estadoxx->id] = $estadoxx->name;
+        }
+        return $estados;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +43,7 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $libros = Libro::all();
+        $libros = Libro::get();
 
         return view('libros.index', compact('libros'));
     }
@@ -29,10 +55,13 @@ class LibroController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
-        $autores = Autor::all();
+        $estados    = $this->estados();
+        $categorias = $this->categorias();
+        $autores    = $this->autores();
 
-        return view('libros.create', compact('categorias', 'autores'));
+        //dd($categorias);
+
+        return view('libros.create', compact('categorias', 'autores', 'estados'));
     }
 
     /**
@@ -49,10 +78,11 @@ class LibroController extends Controller
         $libro->name            = $request->input('name');
         $libro->autor_id        = $request->input('autor_id');
         $libro->categoria_id    = $request->input('categoria_id');
+        $libro->estado_id      = $request->input('estado_id');
 
         $libro->save();
 
-        return redirect()->route('libros.index');
+        return redirect()->route('libros.index')->with('success', 'el libro ha sido creado con éxito');;
     }
 
     /**

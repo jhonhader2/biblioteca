@@ -42,7 +42,7 @@ class CategoriaController extends Controller
         $categoria->name = $request->input('name');
         $categoria->save();
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('success', 'La categoría ha sido creada con éxito');;
     }
 
     /**

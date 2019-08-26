@@ -6,22 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prestamo extends Model
 {
-    protected $fillable = [
-        
-    ];
+    protected $fillable = [];
 
-    public function libro()
-    {
+    public function libro(){
         return $this->belongsTo(Libro::class);
     }
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
     
-    public function estado()
-    {
+    public function estado(){
         return $this->belongsTo(Estado::class);
     }
 }

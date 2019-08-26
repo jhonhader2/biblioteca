@@ -42,7 +42,7 @@ class AutorController extends Controller
         $autor->name = $request->input('name');
         $autor->save();
 
-        return redirect()->route('autores.index');
+        return redirect()->route('autores.index')->with('success', 'El autor ha sido creado con éxito');
     }
 
     /**
