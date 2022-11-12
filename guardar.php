@@ -2,8 +2,6 @@
 
 include_once('conexion.php');
 
-print_r($_POST);
-
 $titulo     = $_POST['titulo'];
 $id_autor   = $_POST['id_autor'];
 $disponible = $_POST['disponible'];
