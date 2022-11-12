@@ -1,9 +1,9 @@
 <?php
 
-include_once('conexion.php');
+include_once('../conexion.php');
 $id = $_GET['id'];
 
-$query = "SELECT id, CONCAT(IFNULL(primer_nombre,''),' ',IFNULL(segundo_nombre,''),' ',IFNULL(primer_apellido,''),' ',IFNULL(segundo_apellido,'')) AS autor FROM autores WHERE estado = 1";
+$query = "SELECT id, CONCAT(IFNULL(primer_nombre,''),' ',IFNULL(segundo_nombre,''),' ',IFNULL(primer_apellido,''),' ',IFNULL(segundo_apellido,'')) AS autor FROM personas WHERE id_rol = 1 AND estado = 1";
 $autores = mysqli_query($con, $query) or die(mysqli_error($con));
 
 $query  = "SELECT * FROM libros WHERE id = $id";
@@ -51,6 +51,7 @@ $libro  = mysqli_fetch_assoc($result);
                         </select>
                     </div>
                     <input class="btn btn-sm btn-outline-primary" type="submit" value="Guardar">
+                    <a class="btn btn-sm btn-outline-success" href="../index.php">Regresar</a>
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-include_once('conexion.php');
+include_once('../conexion.php');
 
 $titulo     = $_POST['titulo'];
 $id_autor   = $_POST['id_autor'];
@@ -14,4 +14,16 @@ if (!isset($_POST['id'])) {
 
 $result = mysqli_query($con, $query) or die(mysqli_error($con));
 
-header("Location: index.php");
+if ($result) {
+    $carpeta = "../images";
+    // $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $ext = "webp";
+    $tmp_name = $_FILES['image']['tmp_name'];
+    $id = $con->insert_id;
+    
+    $name = $id.".".$ext ;
+    
+    move_uploaded_file($tmp_name, "$carpeta/$name");
+}
+
+header("Location: ../index.php");

@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.22-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         5.7.33 - MySQL Community Server (GPL)
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.0.0.6468
+-- HeidiSQL Versión:             12.0.0.6518
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,31 +19,49 @@
 CREATE DATABASE IF NOT EXISTS `biblioteca` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci */;
 USE `biblioteca`;
 
--- Volcando estructura para tabla biblioteca.autores
-CREATE TABLE IF NOT EXISTS `autores` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `primer_nombre` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `segundo_nombre` varchar(50) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
-  `primer_apellido` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `segundo_apellido` varchar(50) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
-  `biografía` longtext COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
-  `estado` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
--- La exportación de datos fue deseleccionada.
-
 -- Volcando estructura para tabla biblioteca.libros
 CREATE TABLE IF NOT EXISTS `libros` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `titulo` varchar(150) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `id_autor` bigint(150) unsigned NOT NULL,
-  `disponible` tinyint(1) NOT NULL DEFAULT 1,
-  `estado` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `imagen` varchar(250) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `disponible` tinyint(1) NOT NULL DEFAULT '1',
+  `estado` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla biblioteca.personas
+CREATE TABLE IF NOT EXISTS `personas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `primer_nombre` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `segundo_nombre` varchar(50) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `primer_apellido` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `segundo_apellido` varchar(50) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `biografía` longtext COLLATE utf8mb4_spanish2_ci,
+  `email` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `id_rol` bigint(20) unsigned DEFAULT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `FK_personas_roles` (`id_rol`),
+  CONSTRAINT `FK_personas_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla biblioteca.roles
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `descripcion` longtext COLLATE utf8mb4_spanish2_ci,
+  `estado` tinyint(4) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- La exportación de datos fue deseleccionada.
 
