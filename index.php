@@ -67,7 +67,7 @@ $libros = mysqli_query($con, $query) or die(mysqli_error($con));
                             <td>Libro</td>
                             <td>Autor</td>
                             <td>Disponibilidad</td>
-                            <td colspan="2">Opciones</td>
+                            <td>Opciones</td>
                         </tr>
                     </thead>
                     <tbody class="text-center">

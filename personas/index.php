@@ -62,7 +62,7 @@ $roles = mysqli_query($con, $query) or die(mysqli_error($con));
                         </select>
                     </div>
                     <div class="mb-3 form-floating">
-                        <textarea class="form-control" placeholder="Ingrese su bio" id="biografia" style="height: 100px"></textarea>
+                        <textarea class="form-control" placeholder="Ingrese su bio" name="biografia" id="biografia" style="height: 100px"></textarea>
                         <label for="biografia">Biografía</label>
                     </div>
                     <input class="btn btn-sm btn-outline-primary" type="submit" value="Guardar">
@@ -92,8 +92,8 @@ $roles = mysqli_query($con, $query) or die(mysqli_error($con));
                                     <td><?php echo $persona['nombre_completo']; ?></td>
                                     <td><?php echo $persona['rol']; ?></td>
                                     <td><?php echo $persona['estado'] ? 'ACTIVO' : 'INACTIVO'; ?></td>
-                                    <td><a href="libros/editar.php?id=<?php echo $libro['id']; ?>" class="btn btn-sm btn-outline-warning">Editar</a></td>
-                                    <td><a href="libros/eliminar.php?id=<?php echo $libro['id']; ?>" class="btn btn-sm btn-outline-danger" value="">Eliminar</a></td>
+                                    <td><a href="editar.php?id=<?php echo $persona['id']; ?>" class="btn btn-sm btn-outline-warning">Editar</a></td>
+                                    <td><a href="eliminar.php?id=<?php echo $persona['id']; ?>" class="btn btn-sm btn-outline-danger" value="">Eliminar</a></td>
                                 </tr>
                             <?php $pos++;
                             }

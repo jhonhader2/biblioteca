@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS `libros` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla biblioteca.libros: ~0 rows (aproximadamente)
+DELETE FROM `libros`;
 
 -- Volcando estructura para tabla biblioteca.personas
 CREATE TABLE IF NOT EXISTS `personas` (
@@ -51,7 +52,12 @@ CREATE TABLE IF NOT EXISTS `personas` (
   CONSTRAINT `FK_personas_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla biblioteca.personas: ~3 rows (aproximadamente)
+DELETE FROM `personas`;
+INSERT INTO `personas` (`id`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `biografía`, `email`, `id_rol`, `estado`, `created_at`) VALUES
+	(1, 'GABRIEL', '', 'GARCÍA', 'MARQUEZ', 'HOLI', 'ggm@mail.com', 1, 1, '2022-11-12 13:32:07'),
+	(2, 'JULIO', NULL, 'VERNE', NULL, 'HOLI2', 'jv@mail.com', 1, 1, '2022-11-12 13:45:28'),
+	(3, 'RAFAEL', NULL, 'POMBO', NULL, 'HOL3', 'rp@mail.com', 1, 0, '2022-11-12 14:00:13');
 
 -- Volcando estructura para tabla biblioteca.roles
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -63,7 +69,12 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Volcando datos para la tabla biblioteca.roles: ~3 rows (aproximadamente)
+DELETE FROM `roles`;
+INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `estado`, `created_at`) VALUES
+	(1, 'AUTOR', NULL, 1, '2022-11-12 14:54:53'),
+	(2, 'LECTOR', NULL, 1, '2022-11-12 14:55:08'),
+	(3, 'SECRETARIA', NULL, 0, '2022-11-12 16:40:17');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
