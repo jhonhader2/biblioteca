@@ -29,10 +29,12 @@ CREATE TABLE IF NOT EXISTS `libros` (
   `estado` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- Volcando datos para la tabla biblioteca.libros: ~0 rows (aproximadamente)
 DELETE FROM `libros`;
+INSERT INTO `libros` (`id`, `titulo`, `id_autor`, `imagen`, `disponible`, `estado`, `created_at`) VALUES
+	(20, '100 AÑOS DE SOLEDAD', 1, NULL, 1, 1, '2022-11-20 16:44:50');
 
 -- Volcando estructura para tabla biblioteca.personas
 CREATE TABLE IF NOT EXISTS `personas` (
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `segundo_nombre` varchar(50) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `primer_apellido` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `segundo_apellido` varchar(50) COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
-  `biografía` longtext COLLATE utf8mb4_spanish2_ci,
+  `biografia` longtext COLLATE utf8mb4_spanish2_ci,
   `email` varchar(50) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `id_rol` bigint(20) unsigned DEFAULT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT '1',
@@ -50,14 +52,16 @@ CREATE TABLE IF NOT EXISTS `personas` (
   UNIQUE KEY `email` (`email`),
   KEY `FK_personas_roles` (`id_rol`),
   CONSTRAINT `FK_personas_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
--- Volcando datos para la tabla biblioteca.personas: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla biblioteca.personas: ~6 rows (aproximadamente)
 DELETE FROM `personas`;
-INSERT INTO `personas` (`id`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `biografía`, `email`, `id_rol`, `estado`, `created_at`) VALUES
+INSERT INTO `personas` (`id`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `biografia`, `email`, `id_rol`, `estado`, `created_at`) VALUES
 	(1, 'GABRIEL', '', 'GARCÍA', 'MARQUEZ', 'HOLI', 'ggm@mail.com', 1, 1, '2022-11-12 13:32:07'),
 	(2, 'JULIO', NULL, 'VERNE', NULL, 'HOLI2', 'jv@mail.com', 1, 1, '2022-11-12 13:45:28'),
-	(3, 'RAFAEL', NULL, 'POMBO', NULL, 'HOL3', 'rp@mail.com', 1, 0, '2022-11-12 14:00:13');
+	(3, 'RAFAEL', NULL, 'POMBO', NULL, 'HOL3', 'rp@mail.com', 1, 0, '2022-11-12 14:00:13'),
+	(6, 'JHON', 'HADER', 'RODRIGUEZ', 'PERDOMO', 'ING. DE SISTEMAS', 'JHHRODRIGUEZP@SENA.EDU.CO', 1, 1, '2022-11-20 16:50:04'),
+	(7, 'PEPITO', '', 'PEREZ', '', '', 'pepitoperez@mail.com', 1, 1, '2022-11-26 13:01:22');
 
 -- Volcando estructura para tabla biblioteca.roles
 CREATE TABLE IF NOT EXISTS `roles` (
